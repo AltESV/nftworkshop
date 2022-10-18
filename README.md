@@ -1,6 +1,6 @@
-# pimped-contracts
+# 📘 pimped-contracts
 
-## Community Bank Feature Enabled ERC1155
+## 🏦Community Bank Feature Enabled ERC1155
 Coded a WIP contract that allows for community bank features such as:
 
 1. anyone can deposit;
@@ -10,8 +10,8 @@ Coded a WIP contract that allows for community bank features such as:
 5. allows owner to set a withdrawal limit;
 6. currently allows anyone to mint unlimited amount of tokens up to cap for free;
 
-## ERC1155
+## 💳ERC1155
 Coded a version that allows for cap, whitelist, pausing and withdrawals
 
-## ERC721
+## 🎭ERC721
 Coded a opensea friendly version

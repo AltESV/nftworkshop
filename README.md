@@ -1,7 +1,7 @@
 # pimped-contracts
 
 ## Community Bank Feature Enabled ERC1155
-Coded a WIP contract that allows for community bank fetures such as:
+Coded a WIP contract that allows for community bank features such as:
 
 1. anyone can deposit;
 2. only owner can whitelist tokenholders;

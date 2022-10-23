@@ -1,3 +1,36 @@
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@                                            @@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@                                                @@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@                                                  @@@@@@@@@@@@@
+@@@@@@@@@@@@@@@(                                                  @@@@@@@@@@@@@@
+@@@@@@@@@@@@@@%                                                 @@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@                                            *&@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@                 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@               @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@%                %@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@                     @@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@*                      @@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@                       @@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@%                      @@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@                   *@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@///////((((#&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@              @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+*/
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
@@ -13,7 +46,7 @@ contract Web3Builders is ERC1155, Ownable, Pausable, ERC1155Supply {
 
 
     //edit max supply of token
-    uint256 public maxSupply = 100;
+    uint256 public maxSupply = 10000;
 
     bool public whiteListActive = false;
 
@@ -68,14 +101,14 @@ contract Web3Builders is ERC1155, Ownable, Pausable, ERC1155Supply {
         }
     }
 
-    //allows anyone to mint unlimited number of token for free up to the max token supply amount need to switch this 
+    //allows onlyowner to mint unlimited number of token for free up to the max token supply amount into any designated wallet 
     //think about if we want to allow owner to mint unlimited amount at no cost and say external to limit up to max 3 tokenIDs for a price where price can be updated
-    function mint(uint256 id, uint256 amount) public payable {
-        _mint(msg.sender, id, amount, "");
+    function mint(address account, uint256 id, uint256 amount) public onlyOwner {
+        _mint(account, id, amount, "");
         require(totalSupply(id) + amount <= maxSupply, "We have hit the cap.");
     }
 
-    //allows whitelisted to withdraw a specified amount up to a certain limit (need to enable owner to set limit)
+    //allows whitelisted to withdraw a specified amount up to a certain limit
     function withdraw(address _addr, uint amount) external {
         require(whiteList[msg.sender], "Address not whitelisted.");
         uint256 balance = address(this).balance;

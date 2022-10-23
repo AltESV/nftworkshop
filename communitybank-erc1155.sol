@@ -102,7 +102,6 @@ contract Web3Builders is ERC1155, Ownable, Pausable, ERC1155Supply {
     }
 
     //allows onlyowner to mint unlimited number of token for free up to the max token supply amount into any designated wallet 
-    //think about if we want to allow owner to mint unlimited amount at no cost and say external to limit up to max 3 tokenIDs for a price where price can be updated
     function mint(address account, uint256 id, uint256 amount) public onlyOwner {
         _mint(account, id, amount, "");
         require(totalSupply(id) + amount <= maxSupply, "We have hit the cap.");

@@ -3,12 +3,12 @@
 ## 🏦Community Bank Feature Enabled ERC1155
 Coded a WIP contract that allows for community bank features such as:
 
-1. anyone can deposit;
-2. only owner can whitelist tokenholders;
-3. only whitelisted users can withdraw up to a limit;
-4. only owner can withdraw unlimited;
-5. allows owner to set a withdrawal limit;
-6. currently allows anyone to mint unlimited amount of tokens up to cap for free;
+-anyone can deposit;
+-only owner can whitelist tokenholders;
+-only whitelisted users can withdraw up to a limit;
+-only owner can withdraw unlimited;
+-allows owner to set a withdrawal limit;
+-only owner can mint for free in unlimited amounts up to token cap into any designated wallet;
 
 ## 💳ERC1155
 Coded a version that allows for cap, whitelist, pausing and withdrawals
